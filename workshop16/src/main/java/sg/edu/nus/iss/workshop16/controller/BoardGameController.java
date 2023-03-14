@@ -72,16 +72,16 @@ public class BoardGameController {
 
         result = boardGameService.findbyId(msId);
         System.out.println("Result >>> " + result);
-        if (!isUpSert) {
-            if (result == null) {
+
+        if (result == null) {
+            // if upsert is false and msId is null, then return 400 status code
+            if (!isUpSert) {
                 return ResponseEntity
                         .status(HttpStatus.BAD_REQUEST)
                         .contentType(MediaType.APPLICATION_JSON)
                         .body("null");
-            }
-        } else {
-            // if upsert is true but msId is null, then perform insert
-            if (result == null) {
+            } else {
+                // if upsert is true but msId is null, then perform insert
                 m.setId(msId);
                 int newInsertCount = boardGameService.saveGame(m);
                 m.setInsertCount(newInsertCount);

@@ -28,7 +28,11 @@ public class BoardGameRepo {
                 .opsForValue()
                 .get(msId);
         System.out.println("Find by id >>> " + jsonStrVal);
-        Mastermind m = Mastermind.createFromJSON(jsonStrVal);
+        Mastermind m = null;
+        if (jsonStrVal != null) {
+            m = Mastermind.createFromJSON(jsonStrVal);
+            m.setId(msId);
+        }
         return m;
     }
 

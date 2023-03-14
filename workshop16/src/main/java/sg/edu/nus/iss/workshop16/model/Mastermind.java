@@ -105,7 +105,7 @@ public class Mastermind implements Serializable {
     }
 
     public static Mastermind createFromJSON(String json) throws IOException {
-        Mastermind m = null;
+        Mastermind m = new Mastermind();
         if (json != null) {
             try (InputStream is = new ByteArrayInputStream(json.getBytes())) {
                 JsonReader r = Json.createReader(is);
